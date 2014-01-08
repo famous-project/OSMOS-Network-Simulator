@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OSMOS Network Simulator</title>
+</head>
+<body>
+  <div id="network_graph" style="width: 100%; height: 1000px;"></div>
+  
+  
+  <script src="vendor/jquery.js"></script>
+  
+  
+  <script src="vendor/lodash.js"></script>
+  <script src="vendor/backbone.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="app/lib/evented_list.js"></script>
+
+  <script src="app/index.js"></script>
+  <script src="app/sim/debug.js"></script>
+  <script src="app/sim/network.js"></script>
+  <script src="app/sim/mac_address.js"></script>
+  <script src="app/sim/frame.js"></script>
+  <script src="app/sim/connection.js"></script>
+  <script src="app/sim/port.js"></script>
+  <script src="app/sim/chassis.js"></script>
+  <script src="app/sim/hub.js"></script>
+  <script src="app/sim/osmos.js"></script>
+  <script src="app/sim/podcast.js"></script>
+  <script src="app/views/network_graph_control.js"></script>
+  <script src="app/views/add_device.js"></script>
+  <script src="app/views/network_graph_view.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="app/index.css">
+
+  <script>
+    window.network = new NetSim.Network();
+    window.graphView = new NetViz.NetworkGraphView(
+      window.network.chassisList,
+      window.network.connectionList
+    );
+  </script>
+
+  <script>
+    var osmos0 = this.network.addChassis(NetSim.OSMOS, 12);
+	var osmos1 = this.network.addChassis(NetSim.OSMOS, 12);
+	var osmos2 = this.network.addChassis(NetSim.OSMOS, 12);
+
+    this.network.connectChassisPair(osmos0, osmos1);
+	this.network.connectChassisPair(osmos0, osmos2);
+
+
+/*Podcasts*/
+    var podcast1 = this.network.addChassis(NetSim.Podcast);
+	var podcast2 = this.network.addChassis(NetSim.Podcast);
+	var podcast3 = this.network.addChassis(NetSim.Podcast);
+	var podcast4 = this.network.addChassis(NetSim.Podcast);
+	var podcast5 = this.network.addChassis(NetSim.Podcast);
+	var podcast6 = this.network.addChassis(NetSim.Podcast);
+	var podcast7 = this.network.addChassis(NetSim.Podcast);
+	var podcast8 = this.network.addChassis(NetSim.Podcast);
+	var podcast9 = this.network.addChassis(NetSim.Podcast);
+	var podcast10 = this.network.addChassis(NetSim.Podcast);
+	var podcast11 = this.network.addChassis(NetSim.Podcast);
+	
+/*Podcast-net*/
+	this.network.connectChassisPair(osmos0, podcast1);
+	this.network.connectChassisPair(osmos0, podcast2);
+	this.network.connectChassisPair(osmos0, podcast3);
+	this.network.connectChassisPair(osmos0, podcast4);
+	
+	this.network.connectChassisPair(osmos1, podcast5);
+	this.network.connectChassisPair(osmos1, podcast6);
+	this.network.connectChassisPair(osmos1, podcast7);
+	
+	this.network.connectChassisPair(osmos2, podcast8);
+	this.network.connectChassisPair(osmos2, podcast9);
+	this.network.connectChassisPair(osmos2, podcast10);
+	this.network.connectChassisPair(osmos2, podcast11);
+	
+  </script>
+</body>
+</html>

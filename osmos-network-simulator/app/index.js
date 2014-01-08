@@ -1,0 +1,2 @@
+window.NetSim = {};
+window.NetViz = {};
